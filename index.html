@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumana Ghimire | QA Automation Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #0f172a; /* Dark Navy */
+            --accent-color: #0ea5e9; /* Bright Blue/Teal */
+            --text-dark: #334155;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            background: var(--bg-white);
+            box-shadow: var(--card-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-subtitle {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            margin-left: 10px;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* --- SKILLS SECTION --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .skill-card h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: #f1f5f9;
+            color: var(--text-dark);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* --- EXPERIENCE SECTION (TIMELINE) --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: #cbd5e1;
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--accent-color);
+        }
+
+        .job-card {
+            background: var(--bg-white);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .company {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .date-loc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .job-desc {
+            list-style: disc;
+            margin-left: 20px;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .job-desc li {
+            margin-bottom: 5px;
+        }
+
+        /* --- EDUCATION & ACHIEVEMENTS --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .edu-item, .achieve-item {
+            background: var(--bg-white);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .edu-item h4 {
+            margin-bottom: 5px;
+        }
+
+        /* --- CONTACT --- */
+        .contact-section {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .contact-card i {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        footer {
+            background: #020617;
+            color: var(--text-light);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* --- ANIMATION CLASSES --- */
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 70px;
+                background: var(--bg-white);
+                flex-direction: column;
+                width: 100%;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                display: none;
+            }
+
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            
+            .contact-info { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Sumana<span>.QA</span></div>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="about">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-subtitle">Hello, I am</span>
+                <h1>Sumana Ghimire</h1>
+                <p>Automation QA Engineer with 3.5+ years of experience in manual and automated testing across web, mobile, API, and gaming applications. Dedicated to improving workflows and operational efficiency.</p>
+                <a href="#contact" class="btn">Get in Touch</a>
+                <a href="#experience" class="btn btn-outline">View Experience</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="skills-grid hidden">
+                
+                <div class="skill-card">
+                    <h3><i class="fas fa-robot"></i> Automation & Testing</h3>
+                    <div class="tags">
+                        <span class="tag">Selenium Webdriver</span>
+                        <span class="tag">TestNG</span>
+                        <span class="tag">JMeter (Performance)</span>
+                        <span class="tag">Postman (API)</span>
+                        <span class="tag">ALTUnityTester</span>
+                        <span class="tag">Manual Testing</span>
+                        <span class="tag">Regression Testing</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3><i class="fas fa-tools"></i> Tools & Management</h3>
+                    <div class="tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">Azure DevOps</span>
+                        <span class="tag">Jira</span>
+                        <span class="tag">Unity</span>
+                        <span class="tag">Git</span>
+                        <span class="tag">JDBC</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3><i class="fas fa-users"></i> Soft Skills</h3>
+                    <div class="tags">
+                        <span class="tag">Analytical Thinking</span>
+                        <span class="tag">Cross-functional Collaboration</span>
+                        <span class="tag">Team Management</span>
+                        <span class="tag">Public Speaking</span>
+                        <span class="tag">Process Optimization</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section-padding" style="background-color: #fff;">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+
+                <div class="timeline-item hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Operations & Technology Support Associate</div>
+                                <div class="company">Indoor Interiors Furniture Udhyog</div>
+                            </div>
+                            <div class="date-loc">Mar 2025 - Present | Kathmandu</div>
+                        </div>
+                        <ul class="job-desc">
+                            <li>Digitalised production workflows, reducing errors and inefficiencies.</li>
+                            <li>Standardised processes from order to delivery, improving on-time performance.</li>
+                            <li>Implemented inventory tracking and data-driven material planning.</li>
+                            <li>Coordinated design, production, and sales teams to enhance communication.</li>
+                            <li>Applied technology-driven process improvements to increase efficiency.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">QA Engineer I</div>
+                                <div class="company">Qniverse Pvt. Ltd</div>
+                            </div>
+                            <div class="date-loc">Jul 2024 - Feb 2025 | Kathmandu</div>
+                        </div>
+                        <ul class="job-desc">
+                            <li>Gathered and documented project requirements in a fast-paced environment.</li>
+                            <li>Built and maintained Selenium-TestNG automation frameworks.</li>
+                            <li>Designed and executed functional and non-functional tests.</li>
+                            <li>Managed defects using Azure DevOps and performed regression testing.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">QA Automation Engineer</div>
+                                <div class="company">Yarsa Labs Pvt. Ltd</div>
+                            </div>
+                            <div class="date-loc">Oct 2023 - Jun 2024 | Lalitpur</div>
+                        </div>
+                        <ul class="job-desc">
+                            <li>Tested gaming applications with >1 million downloads.</li>
+                            <li>Used ALTUnityTester for Unity-based games validation.</li>
+                            <li>Executed performance/load testing using JMeter.</li>
+                            <li>Conducted API automation testing using Postman.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Associate QA Automation Engineer</div>
+                                <div class="company">Verisk Nepal</div>
+                            </div>
+                            <div class="date-loc">Aug 2021 - Feb 2023 | Lalitpur</div>
+                        </div>
+                        <ul class="job-desc">
+                            <li>Developed automation framework using Selenium, Java, and TestNG.</li>
+                            <li>Created regression testing scripts for APIs in JMeter using CSV.</li>
+                            <li>Performed data validation with JDBC connector reducing manual effort.</li>
+                            <li>Accelerated release cycles through automation-driven testing.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section-padding">
+        <div class="container">
+            <div class="grid-2">
+                <div class="hidden">
+                    <h2 style="margin-bottom: 30px; font-size: 1.8rem;">Education</h2>
+                    
+                    <div class="edu-item">
+                        <h4>Masters in Business Administration</h4>
+                        <div class="company">Kings College</div>
+                        <div class="date-loc">Mar 2024 (In Hold)</div>
+                    </div>
+
+                    <div class="edu-item">
+                        <h4>Bachelors in Computer Engineering</h4>
+                        <div class="company">Kantipur Engineering College</div>
+                        <div class="date-loc">Dec 2016 - Mar 2021</div>
+                    </div>
+
+                    <div class="edu-item">
+                        <h4>Diploma of Higher Education Science</h4>
+                        <div class="company">Prasadi Academy</div>
+                        <div class="date-loc">2014 - 2016</div>
+                    </div>
+                </div>
+
+                <div class="hidden">
+                    <h2 style="margin-bottom: 30px; font-size: 1.8rem;">Achievements & Certs</h2>
+                    
+                    <div class="achieve-item">
+                        <h4>Speaker at Girl to Code</h4>
+                        <p>Gave an overview of QA processes and JMeter.</p>
+                    </div>
+
+                    <div class="achieve-item">
+                        <h4>Mentor at WLIT</h4>
+                        <p>Empowered women in tech to grow professionally.</p>
+                    </div>
+
+                    <div class="achieve-item">
+                        <h4>Certifications</h4>
+                        <ul style="margin-left: 20px; list-style: circle;">
+                            <li>Leaders of Learning (HarvardX, 2024)</li>
+                            <li>Business Analysis & Process Management (Coursera)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section section-padding">
+        <div class="container">
+            <h2 class="section-title" style="color: white; border-color: white;">Let's Connect</h2>
+            <p>Open to opportunities in QA Automation and Operations.</p>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>sumanaghimiree@gmail.com</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p>+977 9741660071</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>Kathmandu, Nepal</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sumana Ghimire. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Toggle Mobile Menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Scroll Animation (Intersection Observer)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
