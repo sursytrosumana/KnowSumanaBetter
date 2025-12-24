@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,15 +13,17 @@
     <style>
         /* --- CSS VARIABLES & RESET --- */
         :root {
-            --primary-color: #0f172a; /* Navy: Professionalism */
-            --accent-color: #0ea5e9; /* Blue: Tech/Innovation */
-            --business-color: #059669; /* Green: Operations/Growth */
+            --primary-color: #065f46;
+            --accent-color: #10b981;
+            --business-color: #d97706;
             --text-dark: #334155;
             --text-light: #64748b;
-            --bg-light: #f8fafc;
+            --bg-light: #f0fdf4;
             --bg-white: #ffffff;
             --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --transition: all 0.3s ease;
+            --gradient-start: #d1fae5;
+            --gradient-end: #fef3c7;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,6 +32,89 @@
         h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; color: var(--primary-color); }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
+
+        /* --- THEME SELECTOR --- */
+        .theme-selector {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 999;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            max-width: 280px;
+        }
+        .theme-selector h3 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        .theme-option:hover {
+            background: #f8fafc;
+            transform: translateX(3px);
+        }
+        .theme-option.active {
+            border-color: var(--accent-color);
+            background: var(--bg-light);
+        }
+        .theme-colors {
+            display: flex;
+            gap: 5px;
+        }
+        .color-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .theme-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .close-selector {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        .theme-toggle-btn {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 998;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .theme-toggle-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
 
         /* --- LAYOUT UTILITIES --- */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
@@ -41,17 +127,34 @@
         nav { display: flex; justify-content: space-between; align-items: center; height: 70px; }
         .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); }
         .logo span { color: var(--accent-color); }
-        .nav-links { display: flex; gap: 30px; }
+        .nav-links { display: flex; align-items: center; gap: 30px; }
         .nav-links a { font-weight: 500; font-size: 0.95rem; transition: var(--transition); }
-        .nav-links a:hover { color: var(--accent-color); }
+        .nav-links a:not(.cv-btn):hover { color: var(--accent-color); }
         .hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
 
+        /* CV Download Button in Header */
+        .cv-btn {
+            background-color: var(--primary-color);
+            color: #fff !important; /* Force white text */
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 2px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .cv-btn:hover {
+            background-color: transparent;
+            color: var(--primary-color) !important;
+        }
+        .cv-btn i { margin-right: 6px; }
+
         /* --- HERO SECTION --- */
-        .hero { min-height: 90vh; display: flex; align-items: center; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 100px 0; }
-        .hero-content { max-width: 650px; animation: fadeIn 1s ease-out; }
+        .hero { min-height: 90vh; display: flex; align-items: center; background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%); padding: 100px 0; }
+        .hero-content { max-width: 700px; animation: fadeIn 1s ease-out; }
         .hero-subtitle { color: var(--accent-color); font-weight: 600; font-size: 1.1rem; margin-bottom: 10px; display: block; letter-spacing: 1px; }
         .hero h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 20px; }
-        .hero p { font-size: 1.1rem; color: var(--text-light); margin-bottom: 30px; max-width: 600px; }
+        .hero p { font-size: 1.1rem; color: var(--text-light); margin-bottom: 30px; }
         
         .btn { display: inline-block; background: var(--primary-color); color: white; padding: 12px 30px; border-radius: 5px; font-weight: 600; transition: var(--transition); }
         .btn:hover { background: var(--accent-color); transform: translateY(-2px); }
@@ -59,12 +162,11 @@
         .btn-outline:hover { background: var(--primary-color); color: white; }
 
         /* --- EXPERIENCE TIMELINE --- */
-        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline { position: relative; max-width: 850px; margin: 0 auto; }
         .timeline::before { content: ''; position: absolute; left: 0; top: 0; width: 2px; height: 100%; background: #cbd5e1; }
         .timeline-item { margin-bottom: 40px; padding-left: 30px; position: relative; }
         .timeline-dot { position: absolute; left: -6px; top: 5px; width: 14px; height: 14px; background: var(--accent-color); border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px var(--accent-color); }
         
-        /* Differentiate Ops Role */
         .timeline-item.ops .timeline-dot { background: var(--business-color); box-shadow: 0 0 0 2px var(--business-color); }
         
         .job-card { background: var(--bg-white); padding: 25px; border-radius: 8px; box-shadow: var(--card-shadow); border-left: 4px solid var(--accent-color); }
@@ -77,7 +179,7 @@
         .job-desc { list-style: disc; margin-left: 20px; color: var(--text-dark); font-size: 0.95rem; }
         .job-desc li { margin-bottom: 5px; }
 
-        /* --- PROJECTS SECTION (NEW) --- */
+        /* --- PROJECTS SECTION --- */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
         .project-card { background: white; padding: 25px; border-radius: 8px; box-shadow: var(--card-shadow); transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #e2e8f0; }
         .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border-color: var(--accent-color); }
@@ -93,7 +195,7 @@
         /* --- CERTIFICATIONS & EDUCATION --- */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         .cert-item { background: white; padding: 15px 20px; border-radius: 6px; margin-bottom: 15px; border-left: 3px solid var(--accent-color); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .cert-item.biz { border-left-color: var(--business-color); } /* Green for Business Certs */
+        .cert-item.biz { border-left-color: var(--business-color); }
         .cert-title { font-weight: 700; font-size: 1rem; }
         .cert-issuer { font-size: 0.85rem; color: var(--text-light); }
 
@@ -101,6 +203,12 @@
         .contact-section { background: var(--primary-color); color: white; text-align: center; }
         .contact-info { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 30px; }
         .contact-card { background: rgba(255, 255, 255, 0.1); padding: 20px 40px; border-radius: 10px; backdrop-filter: blur(5px); }
+        
+        /* Strict overrides for visibility in footer */
+        .contact-card h3 { color: #ffffff !important; margin-bottom: 5px; }
+        .contact-card p, .contact-card a { color: #f1f5f9 !important; text-decoration: none; }
+        .contact-card a:hover { color: var(--accent-color) !important; text-decoration: underline; }
+        .contact-card i { color: var(--accent-color); font-size: 1.5rem; margin-bottom: 10px; }
         
         footer { background: #020617; color: var(--text-light); text-align: center; padding: 20px; font-size: 0.9rem; }
         
@@ -116,10 +224,62 @@
             .nav-links { position: absolute; right: 0; top: 70px; background: var(--bg-white); flex-direction: column; width: 100%; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: none; }
             .nav-links.active { display: flex; }
             .hamburger { display: block; }
+            /* Adjust button on mobile */
+            .cv-btn { width: 100%; text-align: center; margin-top: 10px; display: inline-block; }
         }
     </style>
 </head>
 <body>
+
+    <div class="theme-toggle-btn" id="themeToggle">
+        <i class="fas fa-palette"></i> Choose Theme
+    </div>
+
+    <div class="theme-selector" id="themeSelector" style="display: none;">
+        <button class="close-selector" id="closeSelector"><i class="fas fa-times"></i></button>
+        <h3><i class="fas fa-swatchbook"></i> Select Your Theme</h3>
+        
+        <div class="theme-option active" data-theme="emerald">
+            <div class="theme-colors">
+                <div class="color-dot" style="background: #10b981;"></div>
+                <div class="color-dot" style="background: #d97706;"></div>
+            </div>
+            <div class="theme-name">Emerald & Gold</div>
+        </div>
+
+        <div class="theme-option" data-theme="purple">
+            <div class="theme-colors">
+                <div class="color-dot" style="background: #8b5cf6;"></div>
+                <div class="color-dot" style="background: #14b8a6;"></div>
+                <div class="color-dot" style="background: #ec4899;"></div>
+            </div>
+            <div class="theme-name">Purple Exec</div>
+        </div>
+
+        <div class="theme-option" data-theme="navy">
+            <div class="theme-colors">
+                <div class="color-dot" style="background: #0ea5e9;"></div>
+                <div class="color-dot" style="background: #059669;"></div>
+            </div>
+            <div class="theme-name">Navy Classic</div>
+        </div>
+
+        <div class="theme-option" data-theme="rose">
+            <div class="theme-colors">
+                <div class="color-dot" style="background: #e11d48;"></div>
+                <div class="color-dot" style="background: #0891b2;"></div>
+            </div>
+            <div class="theme-name">Rose Executive</div>
+        </div>
+
+        <div class="theme-option" data-theme="indigo">
+            <div class="theme-colors">
+                <div class="color-dot" style="background: #4f46e5;"></div>
+                <div class="color-dot" style="background: #f59e0b;"></div>
+            </div>
+            <div class="theme-name">Indigo Corporate</div>
+        </div>
+    </div>
 
     <header>
         <div class="container">
@@ -132,8 +292,13 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
-                    <li><a href="#education">Education & Certs</a></li>
+                    <li><a href="#education">Education</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li>
+                        <a href="sumana-ghimire-cv.pdf" class="cv-btn" download>
+                            <i class="fas fa-download"></i> Download CV
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -142,12 +307,12 @@
     <section class="hero" id="about">
         <div class="container">
             <div class="hero-content">
-                <span class="hero-subtitle">Bridging Technology & Business Operations</span>
+                <span class="hero-subtitle">Automation QA Engineer & Operations Specialist</span>
                 <h1>Sumana Ghimire</h1>
                 <p>An experienced Computer Engineer combining technical expertise in <strong>QA Automation</strong> with leadership in <strong>Operations Management</strong>. Currently applying data-driven strategies to optimize manufacturing workflows while maintaining deep technical proficiency in test automation.</p>
                 <div style="margin-top: 20px;">
-                    <a href="#projects" class="btn">View Technical Projects</a>
-                    <a href="#experience" class="btn btn-outline">My Career Path</a>
+                    <a href="#experience" class="btn">Professional Journey</a>
+                    <a href="#projects" class="btn btn-outline">Technical Work</a>
                 </div>
             </div>
         </div>
@@ -157,6 +322,24 @@
         <div class="container">
             <h2 class="section-title">Professional Experience</h2>
             <div class="timeline">
+
+                <div class="timeline-item hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Quality Assurance Mentor (Part-Time)</div>
+                                <div class="company">Skillshikshya</div>
+                            </div>
+                            <div class="date-loc">Dec 2025 - Present | Kathmandu</div>
+                        </div>
+                        <ul class="job-desc">
+                            <li>Delivering end-to-end QA training in Manual and Automation Testing, covering SDLC, STLC, and Agile.</li>
+                            <li>Conducting hands-on sessions in Python/Java, Selenium WebDriver, and TestNG.</li>
+                            <li>Introducing CI/CD concepts via Jenkins and database testing using SQL.</li>
+                        </ul>
+                    </div>
+                </div>
 
                 <div class="timeline-item ops hidden">
                     <div class="timeline-dot"></div>
@@ -169,9 +352,9 @@
                             <div class="date-loc">Mar 2025 - Present | Kathmandu</div>
                         </div>
                         <ul class="job-desc">
-                            <li><strong>Process Optimization:</strong> Digitalised production workflows and standardised processes from order to delivery.</li>
-                            <li><strong>Data Analysis:</strong> Analysed production and sales data to support strategic decisions and material planning.</li>
-                            <li><strong>Leadership:</strong> Coordinated across design, production, and sales teams to enhance communication and output.</li>
+                            <li>Digitalised production workflows to reduce errors and standardized processes from order to delivery.</li>
+                            <li>Implemented inventory tracking and data-driven material planning for strategic decision support.</li>
+                            <li>Coordinated across design, production, and sales teams to enhance overall output and communication.</li>
                         </ul>
                     </div>
                 </div>
@@ -187,9 +370,9 @@
                             <div class="date-loc">Jul 2024 - Feb 2025 | Kathmandu</div>
                         </div>
                         <ul class="job-desc">
-                            <li>Built and maintained Selenium-TestNG automation frameworks.</li>
-                            <li>Gathered and documented project requirements in a client-driven environment.</li>
-                            <li>Managed defects using Azure DevOps and performed regression testing.</li>
+                            <li>Gathered and documented project requirements in client-driven environments.</li>
+                            <li>Built and maintained Selenium-TestNG automation frameworks and managed defects using Azure DevOps.</li>
+                            <li>Prepared release notes detailing new features, bug fixes, and deployment steps.</li>
                         </ul>
                     </div>
                 </div>
@@ -205,8 +388,8 @@
                             <div class="date-loc">Oct 2023 - Jun 2024 | Lalitpur</div>
                         </div>
                         <ul class="job-desc">
-                            <li>Tested gaming applications with >1 million downloads using ALTUnityTester.</li>
-                            <li>Developed reusable automation frameworks and executed load testing using JMeter.</li>
+                            <li>Tested gaming applications with >1 million downloads using ALTUnityTester for gameplay validation.</li>
+                            <li>Developed reusable automation frameworks and executed performance/load testing using JMeter.</li>
                             <li>Conducted API automation testing using Postman.</li>
                         </ul>
                     </div>
@@ -217,15 +400,15 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div>
-                                <div class="job-title">Associate QA Automation Engineer</div>
+                                <div class="job-title">QA Engineer (Trainee → Associate → Engineer)</div>
                                 <div class="company">Verisk Nepal</div>
                             </div>
                             <div class="date-loc">Aug 2021 - Feb 2023 | Lalitpur</div>
                         </div>
                         <ul class="job-desc">
-                            <li>Developed automation framework using Selenium, Java, and TestNG.</li>
-                            <li>Performed data validation testing with JDBC connector and JMeter.</li>
-                            <li>Accelerated release cycles through automation-driven testing.</li>
+                            <li>Developed and maintained automation frameworks using Selenium, Java, and TestNG.</li>
+                            <li>Performed data validation testing with JDBC connector and JMeter to reduce manual effort.</li>
+                            <li>Collaborated with cross-functional global teams to accelerate release cycles.</li>
                         </ul>
                     </div>
                 </div>
@@ -347,59 +530,52 @@
 
     <section id="education" class="section-padding">
         <div class="container">
-            <h2 class="section-title">Education & Certifications</h2>
+            <h2 class="section-title">Education & Achievements</h2>
             <div class="grid-2">
                 
                 <div class="hidden">
                     <h3 style="margin-bottom: 20px;"><i class="fas fa-graduation-cap"></i> Academic Background</h3>
-                    
-                    <div class="cert-item biz">
-                        <div class="cert-title">Masters in Business Administration</div>
-                        <div class="cert-issuer">Kings College | Mar 2024 (In Hold)</div>
-                    </div>
-
                     <div class="cert-item">
                         <div class="cert-title">Bachelors in Computer Engineering</div>
                         <div class="cert-issuer">Kantipur Engineering College | 2016 - 2021</div>
                     </div>
-
                     <div class="cert-item">
                         <div class="cert-title">Diploma of Higher Education Science</div>
                         <div class="cert-issuer">Prasadi Academy | 2014 - 2016</div>
+                    </div>
+
+                    <h3 style="margin-top: 30px; margin-bottom: 20px;"><i class="fas fa-trophy"></i> Key Achievements</h3>
+                    <div class="cert-item biz">
+                        <div class="cert-title">Mentor at WLIT</div>
+                        <div class="cert-issuer">6-month mentorship for females in tech</div>
+                    </div>
+                    <div class="cert-item biz">
+                        <div class="cert-title">Speaker at Girl to Code</div>
+                        <div class="cert-issuer">QA Processes & JMeter Training</div>
                     </div>
                 </div>
 
                 <div class="hidden">
                     <h3 style="margin-bottom: 20px;"><i class="fas fa-certificate"></i> Certifications</h3>
-                    
                     <div class="cert-item biz">
                         <div class="cert-title">Business Analysis & Process Management</div>
-                        <div class="cert-issuer">Coursera</div>
+                        <div class="cert-issuer">Coursera | 2025</div>
                     </div>
                     <div class="cert-item biz">
                         <div class="cert-title">Leaders of Learning</div>
-                        <div class="cert-issuer">Harvard Online (ID: 0231adb320ed4befbcf37af68c9d57a4)</div>
+                        <div class="cert-issuer">HarvardX | 2024</div>
                     </div>
-
                     <div class="cert-item">
                         <div class="cert-title">Cloud Practitioners Essential</div>
-                        <div class="cert-issuer">AWS Training Online</div>
-                    </div>
-                    <div class="cert-item">
-                        <div class="cert-title">JMeter: Performance and Load Testing</div>
-                        <div class="cert-issuer">Birdify</div>
-                    </div>
-                    <div class="cert-item">
-                        <div class="cert-title">Selenium Essential & WebDriver</div>
-                        <div class="cert-issuer">Birdify / Alison</div>
-                    </div>
-                    <div class="cert-item">
-                        <div class="cert-title">Java Object Oriented Programming</div>
-                        <div class="cert-issuer">Birdify</div>
+                        <div class="cert-issuer">AWS Training Online | 2022</div>
                     </div>
                     <div class="cert-item">
                         <div class="cert-title">Software Testing Foundations</div>
-                        <div class="cert-issuer">Birdify</div>
+                        <div class="cert-issuer">Birdify | 2021</div>
+                    </div>
+                    <div class="cert-item" style="border-left-color: #cbd5e1;">
+                        <div class="cert-title">Technical Skills</div>
+                        <div class="cert-issuer">Jira, Azure DevOps, JMeter, SQL, Agile, Scrum</div>
                     </div>
                 </div>
 
@@ -410,8 +586,6 @@
     <section id="contact" class="contact-section section-padding">
         <div class="container">
             <h2 class="section-title" style="color: white; border-color: white;">Let's Connect</h2>
-            <p>Ready to discuss how my blend of Technical Automation and Operational Strategy can contribute to your program.</p>
-            
             <div class="contact-info">
                 <div class="contact-card">
                     <i class="fas fa-envelope"></i>
@@ -424,44 +598,98 @@
                     <p>+977 9741660071</p>
                 </div>
                 <div class="contact-card">
-                    <i class="fab fa-linkedin"></i>
+                    <i class="fab fa-github"></i>
                     <h3>Social</h3>
-                    <p><a href="https://github.com/sursytrosumana" style="text-decoration: underline;">GitHub Profile</a></p>
+                    <p><a href="https://github.com/sursytrosumana">GitHub Profile</a></p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 Sumana Ghimire. All Rights Reserved.</p>
+        <p>&copy; 2025 Sumana Ghimire. Professional Portfolio.</p>
     </footer>
 
     <script>
-        // Toggle Mobile Menu
+        // Theme definitions
+        const themes = {
+            emerald: {
+                primary: '#065f46',
+                accent: '#10b981',
+                business: '#d97706',
+                bgLight: '#f0fdf4',
+                gradientStart: '#d1fae5',
+                gradientEnd: '#fef3c7'
+            },
+            purple: {
+                primary: '#6b21a8',
+                accent: '#8b5cf6',
+                business: '#ec4899',
+                bgLight: '#faf5ff',
+                gradientStart: '#f3e8ff',
+                gradientEnd: '#fce7f3'
+            },
+            navy: {
+                primary: '#0f172a',
+                accent: '#0ea5e9',
+                business: '#059669',
+                bgLight: '#f8fafc',
+                gradientStart: '#f0f9ff',
+                gradientEnd: '#e0f2fe'
+            },
+            rose: {
+                primary: '#881337',
+                accent: '#e11d48',
+                business: '#0891b2',
+                bgLight: '#fff1f2',
+                gradientStart: '#ffe4e6',
+                gradientEnd: '#cffafe'
+            },
+            indigo: {
+                primary: '#312e81',
+                accent: '#4f46e5',
+                business: '#f59e0b',
+                bgLight: '#eef2ff',
+                gradientStart: '#e0e7ff',
+                gradientEnd: '#fef3c7'
+            }
+        };
+
+        function applyTheme(themeName) {
+            const theme = themes[themeName];
+            const root = document.documentElement;
+            root.style.setProperty('--primary-color', theme.primary);
+            root.style.setProperty('--accent-color', theme.accent);
+            root.style.setProperty('--business-color', theme.business);
+            root.style.setProperty('--bg-light', theme.bgLight);
+            root.style.setProperty('--gradient-start', theme.gradientStart);
+            root.style.setProperty('--gradient-end', theme.gradientEnd);
+            document.querySelectorAll('.theme-option').forEach(opt => opt.classList.remove('active'));
+            document.querySelector(`[data-theme="${themeName}"]`).classList.add('active');
+            localStorage.setItem('selectedTheme', themeName);
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        const themeSelector = document.getElementById('themeSelector');
+        const closeSelector = document.getElementById('closeSelector');
+
+        themeToggle.addEventListener('click', () => themeSelector.style.display = themeSelector.style.display === 'none' ? 'block' : 'none');
+        closeSelector.addEventListener('click', () => themeSelector.style.display = 'none');
+
+        document.querySelectorAll('.theme-option').forEach(option => {
+            option.addEventListener('click', () => applyTheme(option.getAttribute('data-theme')));
+        });
+
+        applyTheme(localStorage.getItem('selectedTheme') || 'emerald');
+
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Scroll Animation
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
         });
-
-        const hiddenElements = document.querySelectorAll('.hidden');
-        hiddenElements.forEach((el) => observer.observe(el));
+        document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
     </script>
 </body>
 </html>
