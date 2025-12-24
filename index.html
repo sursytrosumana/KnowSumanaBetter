@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sumana Ghimire | QA Automation Engineer</title>
+    <title>Sumana Ghimire | QA Automation & Operations</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
@@ -12,8 +12,9 @@
     <style>
         /* --- CSS VARIABLES & RESET --- */
         :root {
-            --primary-color: #0f172a; /* Dark Navy */
-            --accent-color: #0ea5e9; /* Bright Blue/Teal */
+            --primary-color: #0f172a; /* Navy: Professionalism */
+            --accent-color: #0ea5e9; /* Blue: Tech/Innovation */
+            --business-color: #059669; /* Green: Operations/Growth */
             --text-dark: #334155;
             --text-light: #64748b;
             --bg-light: #f8fafc;
@@ -22,381 +23,99 @@
             --transition: all 0.3s ease;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Poppins', sans-serif;
-            color: var(--primary-color);
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background-color: var(--bg-light); line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; color: var(--primary-color); }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
 
         /* --- LAYOUT UTILITIES --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section-padding {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--accent-color);
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .section-padding { padding: 80px 0; }
+        .section-title { font-size: 2rem; text-align: center; margin-bottom: 3rem; position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--accent-color); margin: 10px auto 0; border-radius: 2px; }
 
         /* --- NAVIGATION --- */
-        header {
-            background: var(--bg-white);
-            box-shadow: var(--card-shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .logo span {
-            color: var(--accent-color);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Mobile Menu */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
+        header { background: var(--bg-white); box-shadow: var(--card-shadow); position: sticky; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); }
+        .logo span { color: var(--accent-color); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent-color); }
+        .hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
 
         /* --- HERO SECTION --- */
-        .hero {
-            height: 90vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            position: relative;
-        }
+        .hero { min-height: 90vh; display: flex; align-items: center; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 100px 0; }
+        .hero-content { max-width: 650px; animation: fadeIn 1s ease-out; }
+        .hero-subtitle { color: var(--accent-color); font-weight: 600; font-size: 1.1rem; margin-bottom: 10px; display: block; letter-spacing: 1px; }
+        .hero h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 20px; }
+        .hero p { font-size: 1.1rem; color: var(--text-light); margin-bottom: 30px; max-width: 600px; }
+        
+        .btn { display: inline-block; background: var(--primary-color); color: white; padding: 12px 30px; border-radius: 5px; font-weight: 600; transition: var(--transition); }
+        .btn:hover { background: var(--accent-color); transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); margin-left: 10px; }
+        .btn-outline:hover { background: var(--primary-color); color: white; }
 
-        .hero-content {
-            max-width: 600px;
-            animation: fadeIn 1s ease-out;
-        }
+        /* --- EXPERIENCE TIMELINE --- */
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; width: 2px; height: 100%; background: #cbd5e1; }
+        .timeline-item { margin-bottom: 40px; padding-left: 30px; position: relative; }
+        .timeline-dot { position: absolute; left: -6px; top: 5px; width: 14px; height: 14px; background: var(--accent-color); border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px var(--accent-color); }
+        
+        /* Differentiate Ops Role */
+        .timeline-item.ops .timeline-dot { background: var(--business-color); box-shadow: 0 0 0 2px var(--business-color); }
+        
+        .job-card { background: var(--bg-white); padding: 25px; border-radius: 8px; box-shadow: var(--card-shadow); border-left: 4px solid var(--accent-color); }
+        .timeline-item.ops .job-card { border-left-color: var(--business-color); }
+        
+        .job-header { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 10px; }
+        .job-title { font-size: 1.2rem; font-weight: 700; }
+        .company { font-weight: 600; color: var(--text-dark); }
+        .date-loc { font-size: 0.9rem; color: var(--text-light); font-style: italic; }
+        .job-desc { list-style: disc; margin-left: 20px; color: var(--text-dark); font-size: 0.95rem; }
+        .job-desc li { margin-bottom: 5px; }
 
-        .hero-subtitle {
-            color: var(--accent-color);
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            display: block;
-        }
+        /* --- PROJECTS SECTION (NEW) --- */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+        .project-card { background: white; padding: 25px; border-radius: 8px; box-shadow: var(--card-shadow); transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #e2e8f0; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border-color: var(--accent-color); }
+        .project-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .project-header i { font-size: 1.2rem; color: var(--accent-color); }
+        .project-title { font-weight: 700; font-size: 1.1rem; }
+        .project-desc { font-size: 0.9rem; color: var(--text-light); margin-bottom: 15px; }
+        .tech-stack { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+        .tech-badge { background: #f1f5f9; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; color: var(--text-dark); }
+        .github-link { color: var(--accent-color); font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 5px; }
+        .github-link:hover { text-decoration: underline; }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 30px;
-            max-width: 500px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .btn:hover {
-            background: var(--accent-color);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            margin-left: 10px;
-        }
-
-        .btn-outline:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        /* --- SKILLS SECTION --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-card {
-            background: var(--bg-white);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: var(--card-shadow);
-            border-top: 4px solid var(--accent-color);
-        }
-
-        .skill-card h3 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tag {
-            background: #f1f5f9;
-            color: var(--text-dark);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* --- EXPERIENCE SECTION (TIMELINE) --- */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 2px;
-            height: 100%;
-            background: #cbd5e1;
-        }
-
-        .timeline-item {
-            margin-bottom: 40px;
-            padding-left: 30px;
-            position: relative;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: -6px;
-            top: 5px;
-            width: 14px;
-            height: 14px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 0 0 2px var(--accent-color);
-        }
-
-        .job-card {
-            background: var(--bg-white);
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: var(--card-shadow);
-        }
-
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
-
-        .job-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        .company {
-            color: var(--accent-color);
-            font-weight: 600;
-        }
-
-        .date-loc {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            font-style: italic;
-        }
-
-        .job-desc {
-            list-style: disc;
-            margin-left: 20px;
-            color: var(--text-dark);
-            font-size: 0.95rem;
-        }
-
-        .job-desc li {
-            margin-bottom: 5px;
-        }
-
-        /* --- EDUCATION & ACHIEVEMENTS --- */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .edu-item, .achieve-item {
-            background: var(--bg-white);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--primary-color);
-            box-shadow: var(--card-shadow);
-        }
-
-        .edu-item h4 {
-            margin-bottom: 5px;
-        }
+        /* --- CERTIFICATIONS & EDUCATION --- */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .cert-item { background: white; padding: 15px 20px; border-radius: 6px; margin-bottom: 15px; border-left: 3px solid var(--accent-color); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .cert-item.biz { border-left-color: var(--business-color); } /* Green for Business Certs */
+        .cert-title { font-weight: 700; font-size: 1rem; }
+        .cert-issuer { font-size: 0.85rem; color: var(--text-light); }
 
         /* --- CONTACT --- */
-        .contact-section {
-            background: var(--primary-color);
-            color: white;
-            text-align: center;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .contact-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px 40px;
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
-        }
-
-        .contact-card i {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--accent-color);
-        }
-
-        footer {
-            background: #020617;
-            color: var(--text-light);
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
-        }
-
-        /* --- ANIMATION CLASSES --- */
-        .hidden {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-
-        .show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .contact-section { background: var(--primary-color); color: white; text-align: center; }
+        .contact-info { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 30px; }
+        .contact-card { background: rgba(255, 255, 255, 0.1); padding: 20px 40px; border-radius: 10px; backdrop-filter: blur(5px); }
+        
+        footer { background: #020617; color: var(--text-light); text-align: center; padding: 20px; font-size: 0.9rem; }
+        
+        /* --- ANIMATIONS --- */
+        .hidden { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+        .show { opacity: 1; transform: translateY(0); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
+            .hero h1 { font-size: 2.2rem; }
             .grid-2 { grid-template-columns: 1fr; }
-            
-            .nav-links {
-                position: absolute;
-                right: 0;
-                top: 70px;
-                background: var(--bg-white);
-                flex-direction: column;
-                width: 100%;
-                padding: 20px;
-                text-align: center;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                display: none;
-            }
-
+            .nav-links { position: absolute; right: 0; top: 70px; background: var(--bg-white); flex-direction: column; width: 100%; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: none; }
             .nav-links.active { display: flex; }
             .hamburger { display: block; }
-            
-            .contact-info { flex-direction: column; gap: 20px; }
         }
     </style>
 </head>
@@ -405,15 +124,15 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">Sumana<span>.QA</span></div>
+                <div class="logo">Sumana<span>.Tech</span></div>
                 <div class="hamburger" id="hamburger">
                     <i class="fas fa-bars"></i>
                 </div>
                 <ul class="nav-links" id="nav-links">
                     <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
                     <li><a href="#experience">Experience</a></li>
-                    <li><a href="#education">Education</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education & Certs</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -423,66 +142,23 @@
     <section class="hero" id="about">
         <div class="container">
             <div class="hero-content">
-                <span class="hero-subtitle">Hello, I am</span>
+                <span class="hero-subtitle">Bridging Technology & Business Operations</span>
                 <h1>Sumana Ghimire</h1>
-                <p>Automation QA Engineer with 3.5+ years of experience in manual and automated testing across web, mobile, API, and gaming applications. Dedicated to improving workflows and operational efficiency.</p>
-                <a href="#contact" class="btn">Get in Touch</a>
-                <a href="#experience" class="btn btn-outline">View Experience</a>
+                <p>An experienced Computer Engineer combining technical expertise in <strong>QA Automation</strong> with leadership in <strong>Operations Management</strong>. Currently applying data-driven strategies to optimize manufacturing workflows while maintaining deep technical proficiency in test automation.</p>
+                <div style="margin-top: 20px;">
+                    <a href="#projects" class="btn">View Technical Projects</a>
+                    <a href="#experience" class="btn btn-outline">My Career Path</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="skills" class="section-padding">
-        <div class="container">
-            <h2 class="section-title">Technical Expertise</h2>
-            <div class="skills-grid hidden">
-                
-                <div class="skill-card">
-                    <h3><i class="fas fa-robot"></i> Automation & Testing</h3>
-                    <div class="tags">
-                        <span class="tag">Selenium Webdriver</span>
-                        <span class="tag">TestNG</span>
-                        <span class="tag">JMeter (Performance)</span>
-                        <span class="tag">Postman (API)</span>
-                        <span class="tag">ALTUnityTester</span>
-                        <span class="tag">Manual Testing</span>
-                        <span class="tag">Regression Testing</span>
-                    </div>
-                </div>
-
-                <div class="skill-card">
-                    <h3><i class="fas fa-tools"></i> Tools & Management</h3>
-                    <div class="tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">Azure DevOps</span>
-                        <span class="tag">Jira</span>
-                        <span class="tag">Unity</span>
-                        <span class="tag">Git</span>
-                        <span class="tag">JDBC</span>
-                    </div>
-                </div>
-
-                <div class="skill-card">
-                    <h3><i class="fas fa-users"></i> Soft Skills</h3>
-                    <div class="tags">
-                        <span class="tag">Analytical Thinking</span>
-                        <span class="tag">Cross-functional Collaboration</span>
-                        <span class="tag">Team Management</span>
-                        <span class="tag">Public Speaking</span>
-                        <span class="tag">Process Optimization</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="section-padding" style="background-color: #fff;">
+    <section id="experience" class="section-padding">
         <div class="container">
             <h2 class="section-title">Professional Experience</h2>
             <div class="timeline">
 
-                <div class="timeline-item hidden">
+                <div class="timeline-item ops hidden">
                     <div class="timeline-dot"></div>
                     <div class="job-card">
                         <div class="job-header">
@@ -493,11 +169,9 @@
                             <div class="date-loc">Mar 2025 - Present | Kathmandu</div>
                         </div>
                         <ul class="job-desc">
-                            <li>Digitalised production workflows, reducing errors and inefficiencies.</li>
-                            <li>Standardised processes from order to delivery, improving on-time performance.</li>
-                            <li>Implemented inventory tracking and data-driven material planning.</li>
-                            <li>Coordinated design, production, and sales teams to enhance communication.</li>
-                            <li>Applied technology-driven process improvements to increase efficiency.</li>
+                            <li><strong>Process Optimization:</strong> Digitalised production workflows and standardised processes from order to delivery.</li>
+                            <li><strong>Data Analysis:</strong> Analysed production and sales data to support strategic decisions and material planning.</li>
+                            <li><strong>Leadership:</strong> Coordinated across design, production, and sales teams to enhance communication and output.</li>
                         </ul>
                     </div>
                 </div>
@@ -513,9 +187,8 @@
                             <div class="date-loc">Jul 2024 - Feb 2025 | Kathmandu</div>
                         </div>
                         <ul class="job-desc">
-                            <li>Gathered and documented project requirements in a fast-paced environment.</li>
                             <li>Built and maintained Selenium-TestNG automation frameworks.</li>
-                            <li>Designed and executed functional and non-functional tests.</li>
+                            <li>Gathered and documented project requirements in a client-driven environment.</li>
                             <li>Managed defects using Azure DevOps and performed regression testing.</li>
                         </ul>
                     </div>
@@ -532,9 +205,8 @@
                             <div class="date-loc">Oct 2023 - Jun 2024 | Lalitpur</div>
                         </div>
                         <ul class="job-desc">
-                            <li>Tested gaming applications with >1 million downloads.</li>
-                            <li>Used ALTUnityTester for Unity-based games validation.</li>
-                            <li>Executed performance/load testing using JMeter.</li>
+                            <li>Tested gaming applications with >1 million downloads using ALTUnityTester.</li>
+                            <li>Developed reusable automation frameworks and executed load testing using JMeter.</li>
                             <li>Conducted API automation testing using Postman.</li>
                         </ul>
                     </div>
@@ -552,8 +224,7 @@
                         </div>
                         <ul class="job-desc">
                             <li>Developed automation framework using Selenium, Java, and TestNG.</li>
-                            <li>Created regression testing scripts for APIs in JMeter using CSV.</li>
-                            <li>Performed data validation with JDBC connector reducing manual effort.</li>
+                            <li>Performed data validation testing with JDBC connector and JMeter.</li>
                             <li>Accelerated release cycles through automation-driven testing.</li>
                         </ul>
                     </div>
@@ -563,52 +234,172 @@
         </div>
     </section>
 
+    <section id="projects" class="section-padding" style="background-color: #fff;">
+        <div class="container">
+            <h2 class="section-title">Technical Projects</h2>
+            <p style="text-align: center; max-width: 600px; margin: 0 auto 40px; color: var(--text-light);">
+                A showcase of automation scripts and frameworks I have built, demonstrating proficiency in Java, JavaScript, Selenium, and API testing.
+            </p>
+            <div class="projects-grid hidden">
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <i class="fas fa-laptop-code"></i>
+                            <div class="project-title">YarsaBazar & UI Automation</div>
+                        </div>
+                        <p class="project-desc">Comprehensive UI testing frameworks for e-commerce and web applications.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Selenium</span>
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">TestNG</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/sursytrosumana/YarsaBazar_Automation" target="_blank" class="github-link"><i class="fab fa-github"></i> View Repository</a>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <i class="fas fa-network-wired"></i>
+                            <div class="project-title">DocsINK Automation</div>
+                        </div>
+                        <p class="project-desc">Medical software automation implemented in both Selenium and Playwright to compare framework efficiency.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Playwright</span>
+                            <span class="tech-badge">Selenium</span>
+                            <span class="tech-badge">Healthcare Domain</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/sursytrosumana/DocsINKAutomationPlaywright" target="_blank" class="github-link"><i class="fab fa-github"></i> View Repository</a>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <i class="fas fa-server"></i>
+                            <div class="project-title">Postman API Tests</div>
+                        </div>
+                        <p class="project-desc">Collection of API tests validating backend endpoints, response codes, and data integrity.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Postman</span>
+                            <span class="tech-badge">REST API</span>
+                            <span class="tech-badge">JSON</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/sursytrosumana/Postman_Api_Tests" target="_blank" class="github-link"><i class="fab fa-github"></i> View Repository</a>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <i class="fas fa-users-cog"></i>
+                            <div class="project-title">OrangeHRM Automation</div>
+                        </div>
+                        <p class="project-desc">Automated testing for HR management software, focusing on employee data management workflows.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Selenium</span>
+                            <span class="tech-badge">Page Object Model</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/sursytrosumana/OrangeHRMAutomation" target="_blank" class="github-link"><i class="fab fa-github"></i> View Repository</a>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <i class="fas fa-code"></i>
+                            <div class="project-title">Cypress Assessments</div>
+                        </div>
+                        <p class="project-desc">Modern web automation using Cypress for fast and reliable browser testing.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Cypress</span>
+                            <span class="tech-badge">JavaScript</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/sursytrosumana/Cypress_assessment_Fuse-Machines" target="_blank" class="github-link"><i class="fab fa-github"></i> View Repository</a>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <i class="fas fa-database"></i>
+                            <div class="project-title">SQL & Database</div>
+                        </div>
+                        <p class="project-desc">SQL assignments and scripts demonstrating database querying and management skills.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge">SQL</span>
+                            <span class="tech-badge">Data Validation</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/sursytrosumana/SQL-Assignment-2-" target="_blank" class="github-link"><i class="fab fa-github"></i> View Repository</a>
+                </div>
+
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="https://github.com/sursytrosumana?tab=repositories" target="_blank" class="btn btn-outline">View All Repositories</a>
+            </div>
+        </div>
+    </section>
+
     <section id="education" class="section-padding">
         <div class="container">
+            <h2 class="section-title">Education & Certifications</h2>
             <div class="grid-2">
+                
                 <div class="hidden">
-                    <h2 style="margin-bottom: 30px; font-size: 1.8rem;">Education</h2>
+                    <h3 style="margin-bottom: 20px;"><i class="fas fa-graduation-cap"></i> Academic Background</h3>
                     
-                    <div class="edu-item">
-                        <h4>Masters in Business Administration</h4>
-                        <div class="company">Kings College</div>
-                        <div class="date-loc">Mar 2024 (In Hold)</div>
+                    <div class="cert-item biz">
+                        <div class="cert-title">Masters in Business Administration</div>
+                        <div class="cert-issuer">Kings College | Mar 2024 (In Hold)</div>
                     </div>
 
-                    <div class="edu-item">
-                        <h4>Bachelors in Computer Engineering</h4>
-                        <div class="company">Kantipur Engineering College</div>
-                        <div class="date-loc">Dec 2016 - Mar 2021</div>
+                    <div class="cert-item">
+                        <div class="cert-title">Bachelors in Computer Engineering</div>
+                        <div class="cert-issuer">Kantipur Engineering College | 2016 - 2021</div>
                     </div>
 
-                    <div class="edu-item">
-                        <h4>Diploma of Higher Education Science</h4>
-                        <div class="company">Prasadi Academy</div>
-                        <div class="date-loc">2014 - 2016</div>
+                    <div class="cert-item">
+                        <div class="cert-title">Diploma of Higher Education Science</div>
+                        <div class="cert-issuer">Prasadi Academy | 2014 - 2016</div>
                     </div>
                 </div>
 
                 <div class="hidden">
-                    <h2 style="margin-bottom: 30px; font-size: 1.8rem;">Achievements & Certs</h2>
+                    <h3 style="margin-bottom: 20px;"><i class="fas fa-certificate"></i> Certifications</h3>
                     
-                    <div class="achieve-item">
-                        <h4>Speaker at Girl to Code</h4>
-                        <p>Gave an overview of QA processes and JMeter.</p>
+                    <div class="cert-item biz">
+                        <div class="cert-title">Business Analysis & Process Management</div>
+                        <div class="cert-issuer">Coursera</div>
+                    </div>
+                    <div class="cert-item biz">
+                        <div class="cert-title">Leaders of Learning</div>
+                        <div class="cert-issuer">Harvard Online (ID: 0231adb320ed4befbcf37af68c9d57a4)</div>
                     </div>
 
-                    <div class="achieve-item">
-                        <h4>Mentor at WLIT</h4>
-                        <p>Empowered women in tech to grow professionally.</p>
+                    <div class="cert-item">
+                        <div class="cert-title">Cloud Practitioners Essential</div>
+                        <div class="cert-issuer">AWS Training Online</div>
                     </div>
-
-                    <div class="achieve-item">
-                        <h4>Certifications</h4>
-                        <ul style="margin-left: 20px; list-style: circle;">
-                            <li>Leaders of Learning (HarvardX, 2024)</li>
-                            <li>Business Analysis & Process Management (Coursera)</li>
-                        </ul>
+                    <div class="cert-item">
+                        <div class="cert-title">JMeter: Performance and Load Testing</div>
+                        <div class="cert-issuer">Birdify</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-title">Selenium Essential & WebDriver</div>
+                        <div class="cert-issuer">Birdify / Alison</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-title">Java Object Oriented Programming</div>
+                        <div class="cert-issuer">Birdify</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-title">Software Testing Foundations</div>
+                        <div class="cert-issuer">Birdify</div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -616,7 +407,7 @@
     <section id="contact" class="contact-section section-padding">
         <div class="container">
             <h2 class="section-title" style="color: white; border-color: white;">Let's Connect</h2>
-            <p>Open to opportunities in QA Automation and Operations.</p>
+            <p>Ready to discuss how my blend of Technical Automation and Operational Strategy can contribute to your program.</p>
             
             <div class="contact-info">
                 <div class="contact-card">
@@ -630,9 +421,9 @@
                     <p>+977 9741660071</p>
                 </div>
                 <div class="contact-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Location</h3>
-                    <p>Kathmandu, Nepal</p>
+                    <i class="fab fa-linkedin"></i>
+                    <h3>Social</h3>
+                    <p><a href="https://github.com/sursytrosumana" style="text-decoration: underline;">GitHub Profile</a></p>
                 </div>
             </div>
         </div>
@@ -651,14 +442,13 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when link is clicked
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
         });
 
-        // Scroll Animation (Intersection Observer)
+        // Scroll Animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
